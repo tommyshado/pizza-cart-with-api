@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <!-- cdn script tags -->
+        <script src="//unpkg.com/alpinejs" defer></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
+
+        <script src="pizza.js" defer></script>
+
+    </head>
+
+    <body x-data="pizzaCart">
+        <h1 x-text="title"></h1>
+
+        <!-- looping over the length of the data from x-data pizzas array -->
+        <template x-for="pizza in pizzas">
+            <div>
+
+                <h4 x-text="pizza.flavour"></h4>
+                <h4 x-text="pizza.price"></h4>
+                <h4 x-text="pizza.id"></h4>
+
+            </div>
+        </template>
+
+    </body>
+    
+
+</html>
