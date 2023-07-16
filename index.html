@@ -7,30 +7,86 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-
+ 
         <!-- cdn script tags -->
         <script src="//unpkg.com/alpinejs" defer></script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-        <script src="pizza.js" defer></script>
+        <!-- when the dom loads it will access  this pizza.js file, so that we can run init() -->
+        <script src="pizza.js"></script>
 
     </head>
 
-    <body x-data="pizzaCart">
-        <h1 x-text="title"></h1>
+    <body x-data="pizzaCart" >
+        <div class="sections">
+            <h1 x-text="title"></h1>
+            
+            <!-- pizza cart section -->
+            <div class="pizza-cart-section">
+                <table>
+                    <tr>
+                        <th>Size</th>
+                        <th>Flavour</th>
+                        <th>Price</th>
+                        <th>Type</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </table>
+        
+                <!-- looping over the length of the data from x-data pizzas array -->
+                <template class="pizzaData" x-for="pizza in cartPizzas">
+                    <tr>
+                        <td x-text="pizza.size"></td>
+                        <td x-text="pizza.flavour"></td>
+                        <td x-text="pizza.price"></td>
+                        <td x-text="pizza.type"></td>
+                        <td x-text="pizza.qty"></td>
+                        <td x-text="(pizza.total).toFixed(2)"></td>
+                    </tr>
+                </template>
+        
+                <div>
+                    <strong><span>Overall Total: R</span><label x-text="cartTotal"></label></strong>
+                </div>
+            </div>
 
-        <!-- looping over the length of the data from x-data pizzas array -->
-        <template x-for="pizza in pizzas">
-            <div>
+            <!-- all the pizzas display -->
+            <div class="pizzas-section">
 
-                <h4 x-text="pizza.flavour"></h4>
-                <h4 x-text="pizza.price"></h4>
-                <h4 x-text="pizza.id"></h4>
+                <h2>Pizzas</h2>
+
+                <!-- template for all the pizzas -->
+                <template x-for="pizza in pizzas">
+
+                    <!-- container for a pizza -->
+                    <div class="pizza">
+
+                        <div class="pizza-title">
+                            <h4 x-text="pizza.type"></h4>
+                        </div>
+                        
+                        <div class="pizza-sub-title">
+                            <strong><label for="flavour">Flavour</label> <span x-text="pizza.flavour"></span></strong>
+                        </div>
+
+                        <strong>
+                            <label for="pizza-price">Price: </label><span x-text="pizza.price"></span>
+                        </strong> 
+
+                        <div class="add-remove-pizza">
+                            <button>Add To Cart</button>
+                            <button>Remove from cart</button>
+                        </div>
+
+                    </div>
+
+                </template>
 
             </div>
-        </template>
+
+        </div>
 
     </body>
-    
 
 </html>
