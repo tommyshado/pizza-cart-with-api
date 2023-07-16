@@ -1,0 +1,27 @@
+body {
+    background-color: #669BBC;
+}
+
+h1 {
+    display: inline;
+};
+
+/* .sections {
+    display: flex;
+} */
+
+
+/* styling pizzas display section */
+
+.pizza {
+    margin: 1em;
+    padding: 1.5em;
+    background-color: #FDF0D5;
+    border-radius: 1em;
+};
+
+/* styling pizza cart section */
+
+.pizza-cart-section {
+    background-color: #1B263B;
+};

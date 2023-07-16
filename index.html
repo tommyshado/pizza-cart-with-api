@@ -7,6 +7,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+
+        <link rel="stylesheet" href="./stylesheets/style.css">
  
         <!-- cdn script tags -->
         <script src="//unpkg.com/alpinejs" defer></script>
@@ -22,7 +24,7 @@
             <h1 x-text="title"></h1>
             
             <!-- pizza cart section -->
-            <div class="pizza-cart-section">
+            <div class="pizza-cart-section" x-show="cartDisplay">
                 <table>
                     <tr>
                         <th>Size</th>
@@ -75,8 +77,8 @@
                         </strong> 
 
                         <div class="add-remove-pizza">
-                            <button>Add To Cart</button>
-                            <button>Remove from cart</button>
+                            <button @click="addPizzaToCart(pizza.id)">Add To Cart</button>
+                            <button @click="removePizzaFromCart(pizza.id)">Remove from cart</button>
                         </div>
 
                     </div>

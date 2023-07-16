@@ -12,6 +12,7 @@ document.addEventListener("alpine:init", () => {
             cartPizzas: [],
             cartTotal: 0.00,
 
+            cartDisplay: false,
 
             // this getCart() method returns the get cart url which is the pizza data
             getCart() {
@@ -20,6 +21,25 @@ document.addEventListener("alpine:init", () => {
                 return axios.get(getCartUrl);
             },
 
+            addPizza(pizzaId) {
+
+                // here we sending a pizza id to the api
+                // make use of the api endpoint for adding to add a pizza to the screen
+                return axios.post("https://pizza-api.projectcodex.net/api/pizza-cart/add", {
+                    "cart_code": this.cartId,
+                    "pizza_id": pizzaId,
+                })
+            },
+
+            removePizza(pizzaId) {
+                // make use of the api endpoint to remove data from the screen
+                return axios.post("https://pizza-api.projectcodex.net/api/pizza-cart/remove", {
+                    "cart_code": this.cartId,
+                    "pizza_id": pizzaId,
+                })
+            },
+            
+            // this fetch the added data
             showCartData() {
                 // here we are referencing the getCart() results by using a promise .then to loop over the data
                 // we will get from axios .get()
@@ -50,7 +70,37 @@ document.addEventListener("alpine:init", () => {
                         this.pizzas = result.data.pizzas;
                     })
 
-                this.showCartData();
+                    this.showCartData();
+                },
+
+            addPizzaToCart(pizzaId) {
+                this
+                    // pass in the pizza id as an argument then...
+                    .addPizza(pizzaId)
+                    // call showCartData() method to show added data
+                    .then(() => {
+                        // showing the pizza cart
+                        this.cartDisplay = true;
+
+                        // showing the pizza cart data
+                        this.showCartData();
+                    })
+            },
+
+            removeCart() {
+                // Check the length of the cartPizza array if it is greater than 0 then... set a cart display to false
+                if (this.cartPizzas.length === 0) this.cartDisplay = false;
+            },
+                   
+            removePizzaFromCart(pizzaId) {
+                this
+                    .removePizza(pizzaId)
+                    .then(() => {
+                        // call show data to refresh the page and get the updatad data
+                        this.showCartData();
+
+                        this.removeCart();
+                    })
             },
         }
     });

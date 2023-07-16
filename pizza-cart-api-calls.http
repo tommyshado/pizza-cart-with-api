@@ -8,7 +8,7 @@ GET https://pizza-api.projectcodex.net/api/pizza-cart/create?username=tommyshado
 
 
 ### Get a cart
-
+ 
 GET https://pizza-api.projectcodex.net/api/pizza-cart/BkL4xDXzJB/GET
 
 
@@ -25,11 +25,14 @@ Content-Type: application/json
 
 ### Remove a pizza from the cart
 
+# the remove endpoint it does not remove a pizza from the cart here at the vscode but when I 
+# post the remove endpoint in the js file and then use a method to to send the data into the showCartData()
+
 POST https://pizza-api.projectcodex.net/api/pizza-cart/remove
 Content-Type: application/json
 
 {
     "cart_code": "BkL4xDXzJB",
-    "pizza_id": 4,
+    "pizza_id": 8,
 }
  
