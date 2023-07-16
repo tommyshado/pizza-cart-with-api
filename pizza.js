@@ -14,6 +14,9 @@ document.addEventListener("alpine:init", () => {
 
             cartDisplay: false,
 
+            payment: 0,
+            paymentFeedback: "",
+
             // this getCart() method returns the get cart url which is the pizza data
             getCart() {
                 const getCartUrl = `https://pizza-api.projectcodex.net/api/pizza-cart/${this.cartId}/GET`;
@@ -36,6 +39,13 @@ document.addEventListener("alpine:init", () => {
                 return axios.post("https://pizza-api.projectcodex.net/api/pizza-cart/remove", {
                     "cart_code": this.cartId,
                     "pizza_id": pizzaId,
+                })
+            },
+
+            pay(amount) {
+                return axios.post("https://pizza-api.projectcodex.net/api/pizza-cart/pay", {
+                    "cart_code": this.cartId,
+                    "amount": amount,
                 })
             },
             
@@ -78,9 +88,12 @@ document.addEventListener("alpine:init", () => {
                     // pass in the pizza id as an argument then...
                     .addPizza(pizzaId)
                     // call showCartData() method to show added data
-                    .then(() => {
-                        // showing the pizza cart
-                        this.cartDisplay = true;
+                    .then(result => {
+
+                        if (result.data.status === "success") {
+                            // showing the pizza cart
+                            this.cartDisplay = true;
+                        };
 
                         // showing the pizza cart data
                         this.showCartData();
@@ -100,6 +113,28 @@ document.addEventListener("alpine:init", () => {
                         this.showCartData();
 
                         this.removeCart();
+                    })
+            },
+
+            payForCart() {
+                this
+                    .pay(this.payment)
+                    .then(result => {
+                        if (result.data.status === 'failure') {
+                            this.paymentFeedback = result.data.message;
+                            setTimeout(() => this.paymentFeedback = "", 3000);
+
+                        } else if (result.data.status === 'success') {
+                            this.paymentFeedback = result.data.message;
+                            setTimeout(() => {
+                                this.paymentFeedback = "";
+                                this.cartPizzas = [];
+                                this.payment = 0.00;
+                                this.cartId = "";
+                                this.cartDisplay = false;
+                            }, 3000);
+                        }
+
                     })
             },
         }

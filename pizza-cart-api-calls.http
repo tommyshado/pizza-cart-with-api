@@ -35,4 +35,17 @@ Content-Type: application/json
     "cart_code": "BkL4xDXzJB",
     "pizza_id": 8,
 }
+
+
+### Payment for pizza
+
+POST https://pizza-api.projectcodex.net/api/pizza-cart/pay
+Content-Type: application/json
+
+{
+    "cart_code": "BkL4xDXzJB",
+    "amount": 1400,
+}
+
+
  

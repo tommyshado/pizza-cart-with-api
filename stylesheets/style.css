@@ -1,27 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Lugrasimo&family=Roboto:ital,wght@1,900&display=swap');
+
 body {
-    background-color: #669BBC;
+    background-color: #8d99ae;
 }
 
 h1 {
     display: inline;
 };
 
-/* .sections {
+.box-model {
+    margin: 1em;
+    padding: 1.5em;
+};
+
+.sections {
     display: flex;
-} */
+};
+
+.messageContainer {
+    color: #ef233c;
+    background-color: #edf2f4;
+};
 
 
 /* styling pizzas display section */
 
 .pizza {
-    margin: 1em;
-    padding: 1.5em;
-    background-color: #FDF0D5;
+    background-color: #edf2f4;
     border-radius: 1em;
+    width: 25%;
+};
+
+.pizza-container-flex {
+    display: flex;
+    flex-wrap: wrap;
 };
 
 /* styling pizza cart section */
 
 .pizza-cart-section {
-    background-color: #1B263B;
+    background-color: #edf2f4;
 };
