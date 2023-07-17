@@ -1,43 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Lugrasimo&family=Roboto:ital,wght@1,900&display=swap');
 
 body {
-    background-color: #8d99ae;
+    background-color: #FFC43D;
 }
 
 h1 {
     display: inline;
-};
+}
 
 .box-model {
     margin: 1em;
     padding: 1.5em;
-};
+}
 
-.sections {
+/* .sections {
     display: flex;
-};
+} */
 
 .messageContainer {
     color: #ef233c;
-    background-color: #edf2f4;
-};
+}
 
 
 /* styling pizzas display section */
 
 .pizza {
-    background-color: #edf2f4;
+    display: flex;
+    background-color: #F8FFE5;
     border-radius: 1em;
-    width: 25%;
-};
+    width: 50%;
+    align-items: center;
+}
 
 .pizza-container-flex {
     display: flex;
     flex-wrap: wrap;
-};
+    justify-content: center;
+}
 
 /* styling pizza cart section */
 
+.pizza-table {
+    display: flex;
+    justify-content: center;
+}
+
 .pizza-cart-section {
-    background-color: #edf2f4;
-};
+    border-radius: 1em;
+    width: 50%;
+}

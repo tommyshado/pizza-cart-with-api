@@ -12,7 +12,7 @@ document.addEventListener("alpine:init", () => {
             cartPizzas: [],
             cartTotal: 0.00,
 
-            cartDisplay: false,
+            // cartDisplay: false,
 
             payment: 0,
             paymentFeedback: "",
@@ -90,20 +90,20 @@ document.addEventListener("alpine:init", () => {
                     // call showCartData() method to show added data
                     .then(result => {
 
-                        if (result.data.status === "success") {
-                            // showing the pizza cart
-                            this.cartDisplay = true;
-                        };
+                        // if (result.data.status === "success") {
+                        //     // showing the pizza cart
+                        //     this.cartDisplay = true;
+                        // };
 
                         // showing the pizza cart data
                         this.showCartData();
                     })
             },
 
-            removeCart() {
-                // Check the length of the cartPizza array if it is greater than 0 then... set a cart display to false
-                if (this.cartPizzas.length === 0) this.cartDisplay = false;
-            },
+            // removeCart() {
+            //     // Check the length of the cartPizza array if it is greater than 0 then... set a cart display to false
+            //     if (this.cartPizzas.length === 0) this.cartDisplay = false;
+            // },
                    
             removePizzaFromCart(pizzaId) {
                 this
@@ -131,7 +131,7 @@ document.addEventListener("alpine:init", () => {
                                 this.cartPizzas = [];
                                 this.payment = 0.00;
                                 this.cartId = "";
-                                this.cartDisplay = false;
+                                // this.cartDisplay = false;
                             }, 3000);
                         }
 

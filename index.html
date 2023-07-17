@@ -8,7 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         
-        <link rel="stylesheet" href="./stylesheets/style.css">
         
         <!-- cdn script tags -->
         <script src="//unpkg.com/alpinejs" defer></script>
@@ -17,6 +16,7 @@
         <!-- when the dom loads it will access  this pizza.js file, so that we can run init() -->
         <script src="pizza.js"></script>
         
+        <link rel="stylesheet" href="./stylesheets/style.css">
 
     </head>
 
@@ -25,39 +25,42 @@
             <h1 x-text="title"></h1>
             
             <!-- pizza cart section -->
-            <div class="messageContainer box-model" x-text="paymentFeedback"></div>
-            <div class="pizza-cart-section" x-show="cartDisplay">
-                <table>
-                    <tr>
-                        <th>Size</th>
-                        <th>Flavour</th>
-                        <th>Price</th>
-                        <th>Type</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                    </tr>
-                </table>
-        
-                <!-- looping over the length of the data from x-data pizzas array -->
-                <template class="pizzaData" x-for="pizza in cartPizzas">
-                    <tr>
-                        <td x-text="pizza.size"></td>
-                        <td x-text="pizza.flavour"></td>
-                        <td x-text="pizza.price"></td>
-                        <td x-text="pizza.type"></td>
-                        <td x-text="pizza.qty"></td>
-                        <td x-text="(pizza.total).toFixed(2)"></td>
-                    </tr>
-                </template>
+            <div class="messageContainer" x-text="paymentFeedback"></div>
+            <div class="pizza-table">
+                <div class="pizza-cart-section" x-show="cartTotal > 0">
+                    <table>
+                        <tr>
+                            <th>Size</th>
+                            <th>Flavour</th>
+                            <th>Price</th>
+                            <th>Type</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </table>
+            
+                    <!-- looping over the length of the data from x-data pizzas array -->
+                    <template class="pizzaData" x-for="pizza in cartPizzas">
+                        <tr>
+                            <td x-text="pizza.size"></td>
+                            <td x-text="pizza.flavour"></td>
+                            <td x-text="pizza.price"></td>
+                            <td x-text="pizza.type"></td>
+                            <td x-text="pizza.qty"></td>
+                            <td x-text="(pizza.total).toFixed(2)"></td>
+                        </tr>
+                    </template>
+    
+                    <div>
+                        <strong><span>Pay:</span></strong><input type="text" name="payment" id="" placeholder="Enter your payment here..." x-model="payment">
+                        <button @click="payForCart()">Pay</button>
+                    </div>
+            
+                    <div>
+                        <strong><span>Overall Total: R</span><label x-text="cartTotal"></label></strong>
+                    </div>
+                </div>
 
-                <div>
-                    <strong><span>Pay:</span></strong><input type="text" name="payment" id="" placeholder="Enter your payment here..." x-model="payment">
-                    <button @click="payForCart()">Pay</button>
-                </div>
-        
-                <div>
-                    <strong><span>Overall Total: R</span><label x-text="cartTotal"></label></strong>
-                </div>
             </div>
 
             <!-- all the pizzas display -->
@@ -72,18 +75,23 @@
                     <div class="pizza-container-flex">
                         <div class="pizza box-model">
     
-                            <div class="pizza-title">
-                                <h4 x-text="pizza.type"></h4>
+                            <div>
+                                <div class="pizza-title">
+                                    <h4 x-text="pizza.type"></h4>
+                                </div>
+                                
+                                <div class="pizza-sub-title">
+                                    <strong><label for="flavour">Flavour</label> <span x-text="pizza.flavour"></span></strong>
+                                </div>
+        
+                                <strong>
+                                    <label for="pizza-price">Price: </label><span x-text="pizza.price"></span>
+                                </strong> 
+        
                             </div>
-                            
-                            <div class="pizza-sub-title">
-                                <strong><label for="flavour">Flavour</label> <span x-text="pizza.flavour"></span></strong>
-                            </div>
-    
-                            <strong>
-                                <label for="pizza-price">Price: </label><span x-text="pizza.price"></span>
-                            </strong> 
-    
+
+                            <img src="./public/pizza (1).png" alt="pizza-image" srcset="" width="100px">
+
                             <div class="add-remove-pizza">
                                 <button @click="addPizzaToCart(pizza.id)">Add To Cart</button>
                                 <button @click="removePizzaFromCart(pizza.id)">Remove from cart</button>
