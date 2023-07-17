@@ -6,7 +6,7 @@ document.addEventListener("alpine:init", () => {
             // here we are sending all the data
             pizzas: [],
 
-            username: "tommyshado",
+            username: "",
             cartId: "BkL4xDXzJB",
 
             cartPizzas: [],
@@ -96,7 +96,11 @@ document.addEventListener("alpine:init", () => {
                             })
                     }
 
-                },
+                    // SHOW the data when the user first comes into the app
+                    // when they added to the cart AND...
+                    // did not pay
+                    this.showCartData();
+                    },
 
             addPizzaToCart(pizzaId) {
                 this

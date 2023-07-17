@@ -25,18 +25,18 @@
             <h1 x-text="title"></h1>
 
             <div>
-                <label> Username: <span x-text="username"></span></label>
+                <label> Username: </label><input x-model="username" placeholder="enter your username"></input>
+                <button @click="createCart()" >LOGIN</button>
             </div>
-            
+
             <div>
                 <label>Cart Code: <span x-text="cartId"></span></label>
             </div>
             
-            
             <!-- pizza cart section -->
             <div class="messageContainer" x-text="paymentFeedback"></div>
             <div class="pizza-table">
-                <div class="pizza-cart-section" x-show="cartTotal > 0">
+                <div class="pizza-cart-section" x-show="cartTotal > 0" x-transition>
                     <table>
                         <tr>
                             <th>Size</th>
@@ -50,7 +50,7 @@
             
                     <!-- looping over the length of the data from x-data pizzas array -->
                     <template class="pizzaData" x-for="pizza in cartPizzas">
-                        <tr>
+                        <tr class="pizza.flavour">
                             <td x-text="pizza.size"></td>
                             <td x-text="pizza.flavour"></td>
                             <td x-text="pizza.price"></td>
@@ -74,7 +74,6 @@
 
             <!-- all the pizzas display -->
             <div class="pizzas-section">
-
                 <h2>Pizzas</h2>
 
                 <!-- template for all the pizzas -->

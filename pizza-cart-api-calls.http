@@ -19,21 +19,18 @@ Content-Type: application/json
 
 {
     "cart_code": "BkL4xDXzJB",
-    "pizza_id": 8
+    "pizza_id": 2
 }
 
 
 ### Remove a pizza from the cart
-
-# the remove endpoint it does not remove a pizza from the cart here at the vscode but when I 
-# post the remove endpoint in the js file and then use a method to to send the data into the showCartData()
 
 POST https://pizza-api.projectcodex.net/api/pizza-cart/remove
 Content-Type: application/json
 
 {
     "cart_code": "BkL4xDXzJB",
-    "pizza_id": 1,
+    "pizza_id": 2
 }
 
 
@@ -44,7 +41,7 @@ Content-Type: application/json
 
 {
     "cart_code": "BkL4xDXzJB",
-    "amount": 1400,
+    "amount": 1400
 }
 
 
