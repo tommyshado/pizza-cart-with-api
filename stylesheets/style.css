@@ -49,3 +49,8 @@ h1 {
     border-radius: 1em;
     width: 50%;
 }
+
+.messageContainer {
+    margin: 1em;
+    padding: 1.5em;
+}

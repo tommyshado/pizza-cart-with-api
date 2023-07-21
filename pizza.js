@@ -60,14 +60,20 @@ document.addEventListener("alpine:init", () => {
             },
             
             addFeaturedPizza(pizzaId) {
-                return axios.post(`https://pizza-api.projectcodex.net/api/pizzas/featured?username=${this.username}`, {
-                    "username": this.username,
-                    "pizza_id": pizzaId
-                })
+                axios
+                    .post(`https://pizza-api.projectcodex.net/api/pizzas/featured?username=${this.username}`, {
+                        "username": this.username,
+                        "pizza_id": pizzaId
+                    })
+                    .then(() => this.getFeaturedPizzas())
             },
 
             getFeaturedPizzas() {
-                return axios.get(`https://pizza-api.projectcodex.net/api/pizzas/featured?username=${this.username}`);
+                axios
+                    .get(`https://pizza-api.projectcodex.net/api/pizzas/featured?username=${this.username}`)
+                    .then(result => {
+                        this.featuredPizzaCart = result.data.pizzas;
+                    });
             },
             
             // this fetch the added data
@@ -88,10 +94,6 @@ document.addEventListener("alpine:init", () => {
                     // here we are setting the cartTotal reference with the total which is just key in the cartData object
                     this.cartTotal = (cartData.total).toFixed(2);
                 })
-
-                this.getFeaturedPizzas().then(result => {
-                    this.featuredPizzaCart = result.data.pizzas;
-                });
             },
 
             // init method
@@ -117,6 +119,10 @@ document.addEventListener("alpine:init", () => {
                     // when they added to the cart AND...
                     // did not pay
                     this.showCartData();
+
+                    // show the data for when the application starts 
+                    // to avoid refreshing the page to see content
+                    this.getFeaturedPizzas();
                     },
 
             addPizzaToCart(pizzaId) {
