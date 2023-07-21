@@ -44,8 +44,6 @@ Content-Type: application/json
     "amount": 1400
 }
 
-
-
 ### Set Pizza to be featured
 
 POST https://pizza-api.projectcodex.net/api/pizzas/featured?username=tommyshado
@@ -53,6 +51,10 @@ Content-Type: application/json
 
 {
     "username": "tommyshado",
-    "pizza_id": 2
+    "pizza_id": 7
 }
+
+### 
+
+GET https://pizza-api.projectcodex.net/api/pizzas/featured?username=tommyshado
  
