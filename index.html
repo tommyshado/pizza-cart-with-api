@@ -27,10 +27,10 @@
         <div class="sections">
             <h1 x-text="title"></h1>
 
-            <div class="d-flex justify-content-center">
+            <!-- <div class="d-flex justify-content-center">
                 <label> Username: </label><input x-model="username" placeholder="enter your username"></input>
                 <button @click="createCart()" >LOGIN</button>
-            </div>
+            </div> -->
             
             <!-- pizza cart section -->
             <div class="messageContainer d-flex justify-content-center" x-text="paymentFeedback"></div>
@@ -76,6 +76,43 @@
                     </div>
     
                 </div>
+
+
+                <!-- featured pizzas section -->
+
+                <div class="featured-section  d-flex justify-content-center">
+
+                    <template x-for="pizza in featuredPizzaCart">
+
+                        <div class="pizza box-model">
+
+                            <div>
+                                <div class="pizza-title">
+                                    <h4 x-text="pizza.type"></h4>
+                                </div>
+                                
+                                <div class="pizza-sub-title">
+                                    <strong><label for="flavour">Flavour</label> <span x-text="pizza.flavour"></span></strong>
+                                </div>
+        
+                                <strong>
+                                    <label for="pizza-price">Price: </label><span x-text="pizza.price"></span>
+                                </strong> 
+        
+                            </div>
+
+                            <img src="./public/pizza (1).png" alt="pizza-image" srcset="" width="100px">
+
+                            <div class="add-remove-pizza">
+                                <button @click="addPizzaToCart(pizza.id)">Add To Cart</button>
+                                <button @click="removePizzaFromCart(pizza.id)">Remove from cart</button>
+                            </div>
+
+                    </template>
+
+
+                </div>
+
     
                 <!-- all the pizzas display -->
                 <div class="pizzas-section">
@@ -89,7 +126,7 @@
                             <div class="pizza box-model">
         
                                 <div>
-                                    <div class="pizza-title"removePizzaFromCart>
+                                    <div class="pizza-title">
                                         <h4 x-text="pizza.type"></h4>
                                     </div>
                                     
@@ -108,6 +145,7 @@
                                 <div class="add-remove-pizza">
                                     <button @click="addPizzaToCart(pizza.id)">Add To Cart</button>
                                     <button @click="removePizzaFromCart(pizza.id)">Remove from cart</button>
+                                    <button @click="addFeaturedPizza(pizza.id)">Feature Pizza</button>
                                 </div>
         
                             </div>

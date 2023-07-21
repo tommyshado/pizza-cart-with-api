@@ -9,7 +9,7 @@ GET https://pizza-api.projectcodex.net/api/pizza-cart/create?username=tommyshado
 
 ### Get a cart
  
-GET https://pizza-api.projectcodex.net/api/pizza-cart/BkL4xDXzJB/GET
+GET https://pizza-api.projectcodex.net/api/pizza-cart/zoRf4oCpxl/GET
 
 
 ### Add a pizza to the cart
@@ -51,10 +51,10 @@ Content-Type: application/json
 
 {
     "username": "tommyshado",
-    "pizza_id": 7
+    "pizza_id": 4
 }
 
-### 
+### Get featured pizzas
 
 GET https://pizza-api.projectcodex.net/api/pizzas/featured?username=tommyshado
  

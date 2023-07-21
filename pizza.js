@@ -6,8 +6,8 @@ document.addEventListener("alpine:init", () => {
             // here we are sending all the data
             pizzas: [],
 
-            username: "",
-            cartId: "BkL4xDXzJB",
+            username: "tommyshado",
+            cartId: "zoRf4oCpxl",
 
             cartPizzas: [],
             cartTotal: 0.00,
@@ -16,6 +16,8 @@ document.addEventListener("alpine:init", () => {
 
             payment: 0,
             paymentFeedback: "",
+
+            featuredPizzaCart: [],
 
             createCart() {
                 const createCartURL = `https://pizza-api.projectcodex.net/api/pizza-cart/create?username=${this.username}`
@@ -57,6 +59,17 @@ document.addEventListener("alpine:init", () => {
                 })
             },
             
+            addFeaturedPizza(pizzaId) {
+                return axios.post(`https://pizza-api.projectcodex.net/api/pizzas/featured?username=${this.username}`, {
+                    "username": this.username,
+                    "pizza_id": pizzaId
+                })
+            },
+
+            getFeaturedPizzas() {
+                return axios.get(`https://pizza-api.projectcodex.net/api/pizzas/featured?username=${this.username}`);
+            },
+            
             // this fetch the added data
             showCartData() {
                 // here we are referencing the getCart() results by using a promise .then to loop over the data
@@ -75,6 +88,10 @@ document.addEventListener("alpine:init", () => {
                     // here we are setting the cartTotal reference with the total which is just key in the cartData object
                     this.cartTotal = (cartData.total).toFixed(2);
                 })
+
+                this.getFeaturedPizzas().then(result => {
+                    this.featuredPizzaCart = result.data.pizzas;
+                });
             },
 
             // init method
