@@ -27,17 +27,13 @@
         <div class="sections">
             <h1 x-text="title"></h1>
 
-            <div>
+            <div class="d-flex justify-content-center">
                 <label> Username: </label><input x-model="username" placeholder="enter your username"></input>
                 <button @click="createCart()" >LOGIN</button>
             </div>
-
-            <div>
-                <label>Cart Code: <span x-text="cartId"></span></label>
-            </div>
             
             <!-- pizza cart section -->
-            <div class="messageContainer" x-text="paymentFeedback"></div>
+            <div class="messageContainer d-flex justify-content-center" x-text="paymentFeedback"></div>
 
             <div>
                 <div class="pizza-table">

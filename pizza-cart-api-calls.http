@@ -45,4 +45,14 @@ Content-Type: application/json
 }
 
 
+
+### Set Pizza to be featured
+
+POST https://pizza-api.projectcodex.net/api/pizzas/featured?username=tommyshado
+Content-Type: application/json
+
+{
+    "username": "tommyshado",
+    "pizza_id": 2
+}
  
