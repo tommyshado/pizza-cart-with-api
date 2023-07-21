@@ -7,7 +7,7 @@ document.addEventListener("alpine:init", () => {
             pizzas: [],
 
             username: "tommyshado",
-            cartId: "zoRf4oCpxl",
+            cartId: "",
 
             cartPizzas: [],
             cartTotal: 0.00,
@@ -123,6 +123,10 @@ document.addEventListener("alpine:init", () => {
                     // show the data for when the application starts 
                     // to avoid refreshing the page to see content
                     this.getFeaturedPizzas();
+
+                    if (this.cartId === '') {
+                        this.createCart();
+                    }
                     },
 
             addPizzaToCart(pizzaId) {
