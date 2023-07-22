@@ -24,6 +24,7 @@ document.addEventListener("alpine:init", () => {
                 return axios.get(createCartURL)
                             .then(result => {
                                 this.cartId = result.data.cart_code;
+                                localStorage.setItem("cartId", this.cartId);
                             });
             },
 
@@ -107,12 +108,10 @@ document.addEventListener("alpine:init", () => {
                         this.pizzas = result.data.pizzas;
                     })
 
-                    if (!this.cartId) {
-                        this
-                            .createCart()
-                            .then(() => {
-                                this.showCartData();
-                            })
+                    if (localStorage["cartId"]) {
+                        this.cartId = localStorage["cartId"];
+                    } else {
+                        this.createCart();
                     }
 
                     // SHOW the data when the user first comes into the app
@@ -123,10 +122,6 @@ document.addEventListener("alpine:init", () => {
                     // show the data for when the application starts 
                     // to avoid refreshing the page to see content
                     this.getFeaturedPizzas();
-
-                    if (this.cartId === '') {
-                        this.createCart();
-                    }
                     },
 
             addPizzaToCart(pizzaId) {
@@ -145,11 +140,6 @@ document.addEventListener("alpine:init", () => {
                         this.showCartData();
                     })
             },
-
-            // removeCart() {
-            //     // Check the length of the cartPizza array if it is greater than 0 then... set a cart display to false
-            //     if (this.cartPizzas.length === 0) this.cartDisplay = false;
-            // },
                    
             removePizzaFromCart(pizzaId) {
                 this
@@ -178,7 +168,6 @@ document.addEventListener("alpine:init", () => {
                                 this.cartTotal = 0.00;
                                 this.cartId = "";
                                 this.createCart();
-                                // this.cartDisplay = false;
                             }, 3000);
                         }
 
